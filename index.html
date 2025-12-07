@@ -116,7 +116,6 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* Темный фон с красным оттенком */
             background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(0,0,0,0.6) 100%),
                         url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2065&auto=format&fit=crop');
             background-size: cover;
@@ -170,7 +169,7 @@
         }
 
         .section-header {
-            margin-bottom: 60px;
+            margin-bottom: 30px; /* Уменьшаем отступ, чтобы кнопка была ближе */
             border-left: 5px solid var(--primary);
             padding-left: 20px;
         }
@@ -259,7 +258,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px; /* Уменьшаем минимальную ширину, так как меньше колонок */
+            min-width: 500px;
         }
 
         thead {
@@ -339,7 +338,7 @@
                 background: var(--bg-panel);
                 flex-direction: column;
                 padding: 20px;
-                display: none; /* Скрыто по умолчанию */
+                display: none;
                 border-bottom: 2px solid var(--primary);
             }
 
@@ -361,7 +360,7 @@
         <nav id="nav-menu">
             <ul>
                 <li><a href="#home">Главная</a></li>
-                <li><a href="#rules">Устав</a></li>
+                <li><a href="#rules">Правила</a></li>
                 <li><a href="#sostav">Состав</a></li>
                 <li><a href="#contacts">Связь</a></li>
             </ul>
@@ -372,7 +371,7 @@
         <h1>We Are The Reapers</h1>
         <p>Элитное подразделение, которое не знает пощады. Мы забираем территории, ресурсы и уважение.</p>
         <br>
-        <a href="#rules" class="btn-glitch">Вступить в ряды</a>
+        <a href="https://forms.gle/mjtiSN1DpFUGcfoa6" target="_blank" class="btn-glitch">Вступить в ряды</a>
     </div>
 
     <section id="rules">
@@ -381,16 +380,18 @@
             <h2>Правила Семьи</h2>
         </div>
 
+        <a href="rules.html" class="btn-glitch" style="margin-bottom: 60px; display: inline-block;">Полный список правил</a>
+
         <div class="rules-container">
             <div class="rule-box">
                 <span class="rule-number">01</span>
                 <h3>Иерархия</h3>
-                <p>Слово Лидера и Заместителя — закон. Любое обсуждение приказов во время мероприятий карается выговором.</p>
+                <p>Слово Лидера и Заместителя — закон. Любое обсуждение приказов во время мероприятий карается **выговорами**.</p>
             </div>
             <div class="rule-box">
                 <span class="rule-number">02</span>
                 <h3>Адекватность</h3>
-                <p>Мы — лицо семьи. Запрещен токсизм, оскорбление родных и неадекватное поведение в общем чате.</p>
+                <p>Мы — **лицо семьи**. Запрещен токсизм, оскорбление родных и неадекватное поведение в общем чате.</p>
             </div>
             <div class="rule-box">
                 <span class="rule-number">03</span>
@@ -405,13 +406,14 @@
             <div class="rule-box">
                 <span class="rule-number">05</span>
                 <h3>Общак</h3>
-                <p>Слив склада (патроны, оружие, нарко) без разрешения старших = Черный Список.</p>
+                <p>Слив склада (патроны, оружие, нарко) без разрешения старших = Черный Список навсегда.</p>
             </div>
             <div class="rule-box">
                 <span class="rule-number">06</span>
-                <h3>Цвет (Color)</h3>
+                <h3>Цвет</h3>
                 <p>Обязательное ношение тега и цвета семьи на всех серверных мероприятиях.</p>
             </div>
+        </div>
     </section>
 
     <section id="sostav">
@@ -425,7 +427,7 @@
                 <thead>
                     <tr>
                         <th>Ранг</th>
-                        <th>Позывной</th>
+                        <th>Позывной (Nick)</th>
                         <th>Специализация</th>
                     </tr>
                 </thead>
@@ -435,28 +437,19 @@
                         <td>Jesus_Macduff</td>
                         <td>Руководящий составом</td>
                     </tr>
-
                     <tr>
                         <td><span class="badge b-zam">Right Hand (8)</span></td>
                         <td>Alexander_Tiper</td>
                         <td>Зам Руководящего состава</td>
                     </tr>
-
                     <tr>
-                        <td><span class="badge b-member">Shooter (6)</span></td>
+                        <td><span class="badge b-member">Shooter (7)</span></td>
                         <td>Rafael_Salvatrucha</td>
                         <td>Стрелок</td>
                     </tr>
-
                     <tr>
-                        <td><span class="badge b-member">Shooter (6)</span></td>
+                        <td><span class="badge b-member">Shooter (7)</span></td>
                         <td>Roman_Zubajdow</td>
-                        <td>Стрелок</td>
-                    </tr>
-
-                    <tr>
-                        <td><span class="badge b-member">Shooter (6)</span></td>
-                        <td>Elayz_Grozny</td>
                         <td>Стрелок</td>
                     </tr>
                 </tbody>
@@ -468,8 +461,7 @@
         <div class="logo" style="font-size: 20px; margin-bottom: 20px;">REAPER<span>LEGENDS</span></div>
         <p style="color: #666; margin-bottom: 20px;">Победа любит подготовку.</p>
         <div class="social-links">
-            <a href="https://discord.gg/8ZXrCXp9" class="social-btn">Discord Server</a>
-            <a href="https://forms.gle/mjtiSN1DpFUGcfoa6" class="social-btn">Вступить в капт</a>
+            <a href="https://discord.gg/YnKMmvtgMN" target="_blank" class="social-btn">Discord Server</a>
         </div>
         <br>
         <p style="font-size: 12px; color: #333; margin-top: 30px;">&copy; 2025 REAPERLEGENDS CREW. All rights reserved.</p>
