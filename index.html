@@ -1,295 +1,258 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>УЕТ Калькулятор</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0a0f;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 40px 20px;
-            color: #fff;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 420px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .rate {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.15);
-            color: #818cf8;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .card {
-            background: #15151f;
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .service {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            transition: background 0.15s;
-        }
-
-        .service:hover {
-            background: rgba(255,255,255,0.02);
-        }
-
-        .service:last-child {
-            border-bottom: none;
-        }
-
-        .service-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .icon {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .name {
-            font-size: 0.9rem;
-            color: #e2e8f0;
-            font-weight: 500;
-        }
-
-        .rate-badge {
-            font-size: 0.7rem;
-            color: #6366f1;
-            background: rgba(99, 102, 241, 0.15);
-            padding: 2px 8px;
-            border-radius: 12px;
-            margin-left: 8px;
-        }
-
-        .input-wrap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        input {
-            width: 70px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 8px 12px;
-            color: #fff;
-            font-size: 0.95rem;
-            text-align: center;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #6366f1;
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        input::placeholder {
-            color: #475569;
-        }
-
-        .result {
-            min-width: 80px;
-            text-align: right;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .total-card {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            border-radius: 16px;
-            padding: 24px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-        }
-
-        .total-item h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.8;
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        .total-item .value {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .breakdown {
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.8rem;
-            max-height: 120px;
-            overflow-y: auto;
-        }
-
-        .break-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-            opacity: 0.9;
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 20px 16px; }
-            .name { font-size: 0.85rem; }
-            input { width: 60px; padding: 6px 10px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>УЕТ Калькулятор — ЦГБ №7</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0f;
+  --card:#15151f;
+  --border:rgba(255,255,255,0.06);
+  --accent1:#6366f1;
+  --accent2:#8b5cf6;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:'Inter',system-ui,sans-serif;
+  color:#fff;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+header{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:20px;
+}
+h1{
+  margin:0;
+  font-size:24px;
+}
+.badge{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  font-size:14px;
+  font-weight:600;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:15px;
+}
+.table{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.row{
+  display:grid;
+  grid-template-columns: 1.5fr 0.7fr 100px 1fr;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  transition:0.2s;
+}
+.row:hover{
+  background:rgba(255,255,255,0.03);
+}
+.service-name{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.uet-badge{
+  background:rgba(139,92,246,0.15);
+  padding:4px 8px;
+  border-radius:8px;
+  font-size:12px;
+}
+input[type=number]{
+  width:100%;
+  padding:6px 8px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:#0f0f17;
+  color:#fff;
+  transition:0.2s;
+}
+input[type=number]:focus{
+  outline:none;
+  border-color:var(--accent1);
+  box-shadow:0 0 0 2px rgba(99,102,241,0.3);
+}
+.result{
+  text-align:right;
+  font-weight:600;
+}
+.summary{
+  margin-top:20px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  border-radius:16px;
+  padding:20px;
+}
+.summary h2{
+  margin:0 0 10px 0;
+}
+.summary .big{
+  font-size:28px;
+  font-weight:700;
+}
+button{
+  cursor:pointer;
+  border:none;
+  border-radius:12px;
+  padding:10px 16px;
+  font-weight:600;
+  transition:0.2s;
+}
+.copy-btn{
+  background:#fff;
+  color:#000;
+}
+.copy-btn:hover{opacity:0.9}
+.reset-btn{
+  background:#222;
+  color:#fff;
+  border:1px solid var(--border);
+}
+details{
+  margin-top:15px;
+}
+details div{
+  margin-top:10px;
+  font-size:14px;
+}
+@media(max-width:480px){
+  .row{
+    grid-template-columns:1fr;
+  }
+  .result{text-align:left}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>УЕТ Калькулятор</h1>
-            <div class="rate">1 УЕТ = 3000 ₽</div>
-        </div>
+<div class="container">
+<header>
+<h1>🏥 УЕТ Калькулятор — ЦГБ №7</h1>
+<span class="badge">1 УЕТ = 3000 ₽</span>
+</header>
 
-        <div class="card" id="services"></div>
+<div class="card table" id="services"></div>
 
-        <div class="total-card">
-            <div class="total-row">
-                <div class="total-item">
-                    <h3>Всего УЕТ</h3>
-                    <div class="value" id="totalUet">0</div>
-                </div>
-                <div class="total-item">
-                    <h3>Рублей</h3>
-                    <div class="value" id="totalRub">0</div>
-                </div>
-            </div>
-            <div class="breakdown" id="breakdown"></div>
-        </div>
-    </div>
+<div class="summary">
+<h2>Итог</h2>
+<div class="big" id="totalUet">0 УЕТ</div>
+<div class="big" id="totalRub">0 ₽</div>
+<br>
+<button class="copy-btn" onclick="copyResult()">Скопировать результат</button>
+<button class="reset-btn" onclick="resetAll()">Сбросить всё</button>
+<div id="datetime" style="margin-top:10px;font-size:13px;"></div>
 
-    <script>
-        const RATE = 3000;
-        
-        const services = [
-            { id: 'tabletki', name: 'Таблетки', icon: '💊', uet: 0.2 },
-            { id: 'pmp', name: 'ПМП', icon: '🩺', uet: 0.9 },
-            { id: 'postavka', name: 'Поставка', icon: '📦', uet: 8 },
-            { id: 'mp', name: 'МП', icon: '🏥', uet: 8 },
-            { id: 'gmp', name: 'ГМП', icon: '🚑', uet: 1 },
-            { id: 'medbook', name: 'Мед. книжка', icon: '📚', uet: 2 },
-            { id: 'narko', name: 'Справка нарколога', icon: '🧪', uet: 2.5 },
-            { id: 'trud', name: 'Трудоустройство', icon: '👤', uet: 2 },
-            { id: 'map', name: 'МАП', icon: '🚌', uet: 6 },
-            { id: 'proverka_gos', name: 'Проверка гос.структур', icon: '🔍', uet: 8 },
-            { id: 'vnutr_proverka', name: 'Внутр. проверка', icon: '📋', uet: 1.5 },
-            { id: 'lekcia', name: 'Лекция', icon: '🎓', uet: 1.8 },
-            { id: 'ekzamen', name: 'Экзамен', icon: '📝', uet: 1.9 },
-            { id: 'dezhurstvo', name: 'Дежурство (15 мин)', icon: '⏰', uet: 4.5 },
-            { id: 'rp', name: 'RP-ситуация', icon: '🎭', uet: 1 },
-            { id: 'nabor', name: 'Набор (безрезультат.)', icon: '📢', uet: 5 }
-        ];
+<details>
+<summary>Детализация</summary>
+<div id="detailsList"></div>
+</details>
+</div>
+</div>
 
-        function render() {
-            const container = document.getElementById('services');
-            container.innerHTML = services.map(s => `
-                <div class="service">
-                    <div class="service-info">
-                        <div class="icon">${s.icon}</div>
-                        <div>
-                            <div class="name">${s.name}</div>
-                        </div>
-                    </div>
-                    <div class="input-wrap">
-                        <span class="rate-badge">${s.uet}</span>
-                        <input type="number" id="${s.id}" placeholder="0" min="0" oninput="calc()">
-                        <div class="result" id="res-${s.id}"></div>
-                    </div>
-                </div>
-            `).join('');
-        }
+<script>
+const RATE=3000;
+const services=[
+["💊","Таблетки",0.2],
+["🚑","ПМП",0.9],
+["📦","Поставка",8],
+["🏥","МП",8],
+["🩺","ГМП",1],
+["📘","Мед. книжка",2],
+["🚓","Справка от нарколога",2.5],
+["💼","Трудоустройство",2],
+["📊","МАП",6],
+["🏛","Проверка гос.структур",8],
+["🔎","Внутр. проверка",1.5],
+["🎓","Лекция",1.8],
+["📝","Экзамен",1.9],
+["⏰","Дежурство (15 мин)",4.5],
+["🎭","RP-ситуация",1],
+["❌","Набор (безрезультативный)",5]
+];
 
-        function fmt(n) {
-            return n.toLocaleString('ru-RU', { maximumFractionDigits: 1 });
-        }
+const container=document.getElementById("services");
 
-        function calc() {
-            let totalUet = 0;
-            let breakdown = [];
-            
-            services.forEach(s => {
-                const qty = parseFloat(document.getElementById(s.id).value) || 0;
-                const uet = qty * s.uet;
-                const rub = uet * RATE;
-                totalUet += uet;
-                
-                const resEl = document.getElementById(`res-${s.id}`);
-                if (qty > 0) {
-                    resEl.textContent = fmt(rub) + ' ₽';
-                    breakdown.push(`${s.icon} ${qty}×${s.uet}=${fmt(uet)}`);
-                } else {
-                    resEl.textContent = '';
-                }
-            });
-            
-            document.getElementById('totalUet').textContent = fmt(totalUet);
-            document.getElementById('totalRub').textContent = fmt(totalUet * RATE);
-            document.getElementById('breakdown').innerHTML = breakdown.length 
-                ? breakdown.map(b => `<div class="break-item">${b}</div>`).join('')
-                : '<div class="break-item" style="opacity:0.5">Введите данные</div>';
-        }
+services.forEach((s,i)=>{
+  const row=document.createElement("div");
+  row.className="row";
+  row.innerHTML=`
+  <div class="service-name">${s[0]} ${s[1]} <span class="uet-badge">${s[2]} УЕТ</span></div>
+  <div></div>
+  <input type="number" min="0" value="${localStorage.getItem('q'+i)||0}" oninput="update()">
+  <div class="result" id="r${i}">0 ₽</div>
+  `;
+  container.appendChild(row);
+});
 
-        render();
-        calc();
-    </script>
+function format(n){
+  return n.toLocaleString('ru-RU');
+}
+
+function animateValue(el,start,end){
+  const duration=200;
+  const startTime=performance.now();
+  function updateAnim(currentTime){
+    const progress=Math.min((currentTime-startTime)/duration,1);
+    const value=start+(end-start)*progress;
+    el.textContent=value;
+    if(progress<1)requestAnimationFrame(updateAnim);
+  }
+  requestAnimationFrame(updateAnim);
+}
+
+function update(){
+  let totalUet=0;
+  let details="";
+  document.querySelectorAll(".row").forEach((row,i)=>{
+    const qty=Math.max(0,parseFloat(row.querySelector("input").value)||0);
+    localStorage.setItem('q'+i,qty);
+    const uet=qty*services[i][2];
+    const rub=uet*RATE;
+    if(qty>0){
+      details+=`${services[i][0]} ${services[i][1]}: ${qty} × ${services[i][2]} = ${uet} УЕТ = ${format(rub)} ₽<br>`;
+    }
+    row.querySelector(".result").textContent=format(rub)+" ₽";
+    totalUet+=uet;
+  });
+  const totalRub=totalUet*RATE;
+  animateValue(document.getElementById("totalUet"),0, totalUet.toFixed(2)+" УЕТ");
+  document.getElementById("totalUet").textContent=totalUet.toFixed(2)+" УЕТ";
+  document.getElementById("totalRub").textContent=format(totalRub)+" ₽";
+  document.getElementById("detailsList").innerHTML=details||"Нет данных";
+  document.getElementById("datetime").textContent="Расчёт: "+new Date().toLocaleString();
+}
+
+function copyResult(){
+  const text=`Итог: ${document.getElementById("totalUet").textContent} | ${document.getElementById("totalRub").textContent}`;
+  navigator.clipboard.writeText(text);
+  alert("Скопировано!");
+}
+
+function resetAll(){
+  localStorage.clear();
+  document.querySelectorAll("input").forEach(i=>i.value=0);
+  update();
+}
+
+update();
+</script>
 </body>
 </html>
