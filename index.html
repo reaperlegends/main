@@ -1,258 +1,369 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>УЕТ Калькулятор — ЦГБ №7</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0a0a0f;
-  --card:#15151f;
-  --border:rgba(255,255,255,0.06);
-  --accent1:#6366f1;
-  --accent2:#8b5cf6;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--bg);
-  font-family:'Inter',system-ui,sans-serif;
-  color:#fff;
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
-header{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-bottom:20px;
-}
-h1{
-  margin:0;
-  font-size:24px;
-}
-.badge{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  font-size:14px;
-  font-weight:600;
-}
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:15px;
-}
-.table{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.row{
-  display:grid;
-  grid-template-columns: 1.5fr 0.7fr 100px 1fr;
-  align-items:center;
-  gap:10px;
-  padding:10px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  transition:0.2s;
-}
-.row:hover{
-  background:rgba(255,255,255,0.03);
-}
-.service-name{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.uet-badge{
-  background:rgba(139,92,246,0.15);
-  padding:4px 8px;
-  border-radius:8px;
-  font-size:12px;
-}
-input[type=number]{
-  width:100%;
-  padding:6px 8px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:#0f0f17;
-  color:#fff;
-  transition:0.2s;
-}
-input[type=number]:focus{
-  outline:none;
-  border-color:var(--accent1);
-  box-shadow:0 0 0 2px rgba(99,102,241,0.3);
-}
-.result{
-  text-align:right;
-  font-weight:600;
-}
-.summary{
-  margin-top:20px;
-  background:linear-gradient(135deg,var(--accent1),var(--accent2));
-  border-radius:16px;
-  padding:20px;
-}
-.summary h2{
-  margin:0 0 10px 0;
-}
-.summary .big{
-  font-size:28px;
-  font-weight:700;
-}
-button{
-  cursor:pointer;
-  border:none;
-  border-radius:12px;
-  padding:10px 16px;
-  font-weight:600;
-  transition:0.2s;
-}
-.copy-btn{
-  background:#fff;
-  color:#000;
-}
-.copy-btn:hover{opacity:0.9}
-.reset-btn{
-  background:#222;
-  color:#fff;
-  border:1px solid var(--border);
-}
-details{
-  margin-top:15px;
-}
-details div{
-  margin-top:10px;
-  font-size:14px;
-}
-@media(max-width:480px){
-  .row{
-    grid-template-columns:1fr;
-  }
-  .result{text-align:left}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор УЕТ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a14;
+      --bg-soft: #0f1424;
+      --card: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #ebefff;
+      --muted: #b1bad7;
+      --accent: #7c8cff;
+      --accent-2: #35d6ff;
+      --success: #57e2a8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(1200px 1200px at 5% -10%, #24336f 0%, transparent 45%),
+        radial-gradient(1100px 1000px at 110% 0%, #164f73 0%, transparent 42%),
+        var(--bg);
+      padding: 24px;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      letter-spacing: 0.2px;
+    }
+
+    .sub {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .pill {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 8px 22px rgba(70, 130, 255, 0.4);
+    }
+
+    .table-card {
+      padding: 14px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: minmax(250px, 1.4fr) 150px 110px 150px;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 10px;
+      background: rgba(8, 12, 24, 0.5);
+    }
+
+    .row:last-child { margin-bottom: 0; }
+
+    .service {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .service-title {
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .uet {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .emoji {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: rgba(124, 140, 255, 0.18);
+      border: 1px solid rgba(124, 140, 255, 0.35);
+      flex-shrink: 0;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--text);
+      font-size: 1rem;
+      padding: 10px;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    input[type="number"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 140, 255, 0.2);
+    }
+
+    .money {
+      text-align: right;
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    .summary {
+      padding: 22px;
+      display: grid;
+      gap: 12px;
+      background:
+        linear-gradient(135deg, rgba(124, 140, 255, 0.25), rgba(53, 214, 255, 0.14)),
+        var(--card);
+    }
+
+    .summary-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .summary-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .summary-values .big {
+      font-size: clamp(1.3rem, 3.8vw, 2.15rem);
+      font-weight: 800;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #0d1220;
+    }
+
+    .btn-muted {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    details {
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+      padding-top: 10px;
+    }
+
+    .details-body {
+      margin-top: 8px;
+      color: #d8dfff;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 860px) {
+      .row {
+        grid-template-columns: 1fr 120px;
+      }
+      .uet { grid-column: 1 / -1; }
+      .money { text-align: left; }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-<header>
-<h1>🏥 УЕТ Калькулятор — ЦГБ №7</h1>
-<span class="badge">1 УЕТ = 3000 ₽</span>
-</header>
+  <main class="wrapper">
+    <section class="hero glass">
+      <div>
+        <h1>📊 Калькулятор УЕТ</h1>
+        <div class="sub">Введите количество услуг — сайт автоматически посчитает сумму в УЕТ и рублях.</div>
+      </div>
+      <div class="pill">1 УЕТ = 3 000 ₽</div>
+    </section>
 
-<div class="card table" id="services"></div>
+    <section class="table-card glass" id="services"></section>
 
-<div class="summary">
-<h2>Итог</h2>
-<div class="big" id="totalUet">0 УЕТ</div>
-<div class="big" id="totalRub">0 ₽</div>
-<br>
-<button class="copy-btn" onclick="copyResult()">Скопировать результат</button>
-<button class="reset-btn" onclick="resetAll()">Сбросить всё</button>
-<div id="datetime" style="margin-top:10px;font-size:13px;"></div>
+    <section class="summary glass">
+      <div class="summary-title">Итого</div>
+      <div class="summary-values">
+        <div class="big" id="totalUet">0.00 УЕТ</div>
+        <div class="big" id="totalRub">0 ₽</div>
+      </div>
+      <div class="actions">
+        <button class="btn-primary" id="copyBtn">Скопировать итог</button>
+        <button class="btn-muted" id="resetBtn">Сбросить</button>
+      </div>
+      <div class="meta" id="dateTime">Расчёт: —</div>
+      <details>
+        <summary>Показать детализацию</summary>
+        <div class="details-body" id="details">Нет данных</div>
+      </details>
+    </section>
+  </main>
 
-<details>
-<summary>Детализация</summary>
-<div id="detailsList"></div>
-</details>
-</div>
-</div>
+  <script>
+    const RATE = 3000;
+    const services = [
+      ["💊", "Таблетка", 0.20],
+      ["🚑", "ПМП", 0.90],
+      ["📦", "Поставка", 8.00],
+      ["🏥", "МП", 8.00],
+      ["🩺", "ГМП", 1.00],
+      ["📘", "Мед. книжка", 2.00],
+      ["🚓", "Справка от нарколога", 2.50],
+      ["🧾", "Трудоустройство нового сотрудника (вариант 1)", 2.00],
+      ["📍", "МАП", 6.00],
+      ["🏛️", "Проверка гос.структур (вариант 1)", 8.00],
+      ["🔍", "Внутр. проверка сотрудника", 1.50],
+      ["🎓", "Лекция", 1.80],
+      ["📝", "Экзамен", 1.90],
+      ["🧑‍💼", "Трудоустройство нового сотрудника (вариант 2)", 5.00],
+      ["📣", "Мобильный агитационный пункт", 8.00],
+      ["🏢", "Проверка гос.структур (вариант 2)", 1.00],
+      ["⏱️", "Дежурство (15 мин.)", 4.50],
+      ["🎭", "RP-ситуация", 1.00],
+      ["❌", "Проведенный набор (безрезультат.)", 5.00]
+    ];
 
-<script>
-const RATE=3000;
-const services=[
-["💊","Таблетки",0.2],
-["🚑","ПМП",0.9],
-["📦","Поставка",8],
-["🏥","МП",8],
-["🩺","ГМП",1],
-["📘","Мед. книжка",2],
-["🚓","Справка от нарколога",2.5],
-["💼","Трудоустройство",2],
-["📊","МАП",6],
-["🏛","Проверка гос.структур",8],
-["🔎","Внутр. проверка",1.5],
-["🎓","Лекция",1.8],
-["📝","Экзамен",1.9],
-["⏰","Дежурство (15 мин)",4.5],
-["🎭","RP-ситуация",1],
-["❌","Набор (безрезультативный)",5]
-];
+    const servicesRoot = document.getElementById('services');
+    const totalUetNode = document.getElementById('totalUet');
+    const totalRubNode = document.getElementById('totalRub');
+    const detailsNode = document.getElementById('details');
+    const dateTimeNode = document.getElementById('dateTime');
 
-const container=document.getElementById("services");
+    const formatNumber = (value, digits = 0) => value.toLocaleString('ru-RU', {
+      minimumFractionDigits: digits,
+      maximumFractionDigits: digits
+    });
 
-services.forEach((s,i)=>{
-  const row=document.createElement("div");
-  row.className="row";
-  row.innerHTML=`
-  <div class="service-name">${s[0]} ${s[1]} <span class="uet-badge">${s[2]} УЕТ</span></div>
-  <div></div>
-  <input type="number" min="0" value="${localStorage.getItem('q'+i)||0}" oninput="update()">
-  <div class="result" id="r${i}">0 ₽</div>
-  `;
-  container.appendChild(row);
-});
+    const renderRows = () => {
+      services.forEach(([icon, name, uet], i) => {
+        const row = document.createElement('div');
+        row.className = 'row';
+        const savedValue = Number(localStorage.getItem(`uet_qty_${i}`) || 0);
 
-function format(n){
-  return n.toLocaleString('ru-RU');
-}
+        row.innerHTML = `
+          <div class="service">
+            <div class="emoji">${icon}</div>
+            <div class="service-title">${name}</div>
+          </div>
+          <div class="uet">${uet.toFixed(2)} УЕТ / 1 шт.</div>
+          <input type="number" min="0" step="1" value="${savedValue}" aria-label="Количество: ${name}">
+          <div class="money" id="money_${i}">0 ₽</div>
+        `;
 
-function animateValue(el,start,end){
-  const duration=200;
-  const startTime=performance.now();
-  function updateAnim(currentTime){
-    const progress=Math.min((currentTime-startTime)/duration,1);
-    const value=start+(end-start)*progress;
-    el.textContent=value;
-    if(progress<1)requestAnimationFrame(updateAnim);
-  }
-  requestAnimationFrame(updateAnim);
-}
+        const input = row.querySelector('input');
+        input.addEventListener('input', updateTotals);
+        servicesRoot.appendChild(row);
+      });
+    };
 
-function update(){
-  let totalUet=0;
-  let details="";
-  document.querySelectorAll(".row").forEach((row,i)=>{
-    const qty=Math.max(0,parseFloat(row.querySelector("input").value)||0);
-    localStorage.setItem('q'+i,qty);
-    const uet=qty*services[i][2];
-    const rub=uet*RATE;
-    if(qty>0){
-      details+=`${services[i][0]} ${services[i][1]}: ${qty} × ${services[i][2]} = ${uet} УЕТ = ${format(rub)} ₽<br>`;
+    function updateTotals() {
+      let totalUet = 0;
+      const detailLines = [];
+
+      document.querySelectorAll('.row').forEach((row, i) => {
+        const qtyRaw = Number(row.querySelector('input').value);
+        const qty = Number.isFinite(qtyRaw) && qtyRaw > 0 ? Math.floor(qtyRaw) : 0;
+        row.querySelector('input').value = qty;
+        localStorage.setItem(`uet_qty_${i}`, qty);
+
+        const [icon, name, uetRate] = services[i];
+        const rowUet = qty * uetRate;
+        const rowRub = rowUet * RATE;
+
+        row.querySelector('.money').textContent = `${formatNumber(rowRub)} ₽`;
+        totalUet += rowUet;
+
+        if (qty > 0) {
+          detailLines.push(`${icon} ${name}: ${qty} × ${uetRate.toFixed(2)} = ${rowUet.toFixed(2)} УЕТ (${formatNumber(rowRub)} ₽)`);
+        }
+      });
+
+      const totalRub = totalUet * RATE;
+      totalUetNode.textContent = `${formatNumber(totalUet, 2)} УЕТ`;
+      totalRubNode.textContent = `${formatNumber(totalRub)} ₽`;
+      detailsNode.innerHTML = detailLines.length ? detailLines.join('<br>') : 'Нет данных';
+      dateTimeNode.textContent = `Расчёт: ${new Date().toLocaleString('ru-RU')}`;
     }
-    row.querySelector(".result").textContent=format(rub)+" ₽";
-    totalUet+=uet;
-  });
-  const totalRub=totalUet*RATE;
-  animateValue(document.getElementById("totalUet"),0, totalUet.toFixed(2)+" УЕТ");
-  document.getElementById("totalUet").textContent=totalUet.toFixed(2)+" УЕТ";
-  document.getElementById("totalRub").textContent=format(totalRub)+" ₽";
-  document.getElementById("detailsList").innerHTML=details||"Нет данных";
-  document.getElementById("datetime").textContent="Расчёт: "+new Date().toLocaleString();
-}
 
-function copyResult(){
-  const text=`Итог: ${document.getElementById("totalUet").textContent} | ${document.getElementById("totalRub").textContent}`;
-  navigator.clipboard.writeText(text);
-  alert("Скопировано!");
-}
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      const text = `Итог: ${totalUetNode.textContent} | ${totalRubNode.textContent}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Итог скопирован ✅');
+      } catch {
+        alert('Не удалось скопировать в буфер обмена.');
+      }
+    });
 
-function resetAll(){
-  localStorage.clear();
-  document.querySelectorAll("input").forEach(i=>i.value=0);
-  update();
-}
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      services.forEach((_, i) => localStorage.removeItem(`uet_qty_${i}`));
+      document.querySelectorAll('.row input').forEach((input) => {
+        input.value = 0;
+      });
+      updateTotals();
+    });
 
-update();
-</script>
+    renderRows();
+    updateTotals();
+  </script>
 </body>
 </html>
